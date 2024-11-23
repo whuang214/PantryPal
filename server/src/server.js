@@ -8,6 +8,10 @@ const port = process.env.PORT || 3000;
 /* Middleware */
 app.use(morgan("dev")); // add logging middleware
 
+/* Routes */
+
+// auth routes
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
