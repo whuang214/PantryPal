@@ -7,10 +7,12 @@ const port = process.env.PORT || 3000;
 
 /* Middleware */
 app.use(morgan("dev")); // add logging middleware
+app.use(express.json()); // allows for json requests
+
+app.use(require("./config/auth")); // add req.user if token is valid
 
 /* Routes */
-
-// auth routes
+app.use("api/auth", require("./routes/authRoutes"));
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
