@@ -1,9 +1,13 @@
 require("dotenv").config(); // Load environment variables
 const express = require("express"); // Express web server framework
 const morgan = require("morgan"); // Logging middleware
+const connectDB = require("./config/db");
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Connect to the database
+connectDB();
 
 /* Middleware */
 app.use(morgan("dev")); // add logging middleware
