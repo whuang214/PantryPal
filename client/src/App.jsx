@@ -1,17 +1,25 @@
-import React, { useState } from "react";
-import Home from "./pages/home";
+import React, { useContext } from "react";
+import { AuthContext } from "./contexts/AuthProvider.jsx";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, login, logout, isLoading } = useContext(AuthContext);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
-      {isLoggedIn ? (
-        <Home />
+      {user ? (
+        <div>
+          <h1>Welcome, {user.name}!</h1>
+          <button onClick={logout}>Logout</button>
+        </div>
       ) : (
         <div>
-          <button onClick={() => setIsLoggedIn(true)}>Login</button>
-          <button onClick={() => setIsLoggedIn(true)}>Sign Up</button>
+          <button onClick={() => login({ username: "test", password: "test" })}>
+            Login
+          </button>
         </div>
       )}
     </div>
