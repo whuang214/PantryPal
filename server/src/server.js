@@ -14,6 +14,7 @@ connectDB();
 
 /* Middleware */
 app.use(morgan("dev")); // add logging middleware
+app.use(require("./config/corsConfig")); // add cors middleware
 app.use(express.json()); // allows for json requests
 app.use(passport.initialize()); // Initialize Passport
 
