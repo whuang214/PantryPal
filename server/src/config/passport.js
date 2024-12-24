@@ -13,7 +13,7 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        console.log("Google profile: ", profile);
+        // console.log("Google profile: ", profile);
         // Check if user already exists
         let user = await User.findOne({ googleId: profile.id });
 
@@ -45,7 +45,7 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        console.log("Github profile: ", profile);
+        // console.log("Github profile: ", profile);
         // Check if user already exists
         let user = await User.findOne({ githubId: profile.id });
 
