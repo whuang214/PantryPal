@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
 const JWT_SECRET = process.env.JWT_SECRET;
+const redirectUrl = process.env.CLIENT_URL;
 
 // Signup controller
 const signup = async (req, res) => {
@@ -81,7 +82,8 @@ const googleAuthCallback = async (req, res) => {
     // Generate a JWT for the user
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "24h" });
 
-    res.status(200).json({ token });
+    // res.status(200).json({ token });
+    res.redirect(`${redirectUrl}?token=${token}`);
   })(req, res);
 };
 
@@ -106,7 +108,8 @@ const githubAuthCallback = async (req, res) => {
     // Generate a JWT for the user
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "24h" });
 
-    res.status(200).json({ token });
+    // res.status(200).json({ token });
+    res.redirect(`${redirectUrl}?token=${token}`);
   })(req, res);
 };
 
