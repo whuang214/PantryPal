@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const usersCtrl = require("../controllers/authController");
+const authCtrl = require("../controllers/authController");
 
 /* Routes */
-router.post("/signup", usersCtrl.signup); // signup
-router.post("/login", usersCtrl.login); // login
+// router.post("/signup", authCtrl.signup); // signup
+// router.post("/login", authCtrl.login); // login
 
-// Google OAuth
-router.get("/google", usersCtrl.googleAuth);
-router.get("/google/callback", usersCtrl.googleAuthCallback);
+router.get("/google", authCtrl.googleAuth);
+router.get("/google/callback", authCtrl.googleAuthCallback);
 
 module.exports = router;
