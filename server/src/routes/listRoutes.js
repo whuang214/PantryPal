@@ -4,6 +4,10 @@ const listController = require("../controllers/listController");
 
 // GET /api/list
 // gets all of the current user's lists
-router.get("/", (req, res) => {
-  listController.getList(req, res);
-});
+router.get("/", listController.getList);
+
+// POST /api/list
+// creates a new list
+router.post("/", listController.createList);
+
+module.exports = router;

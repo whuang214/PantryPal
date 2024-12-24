@@ -26,6 +26,12 @@ app.use(
   isAuthenticated,
   require("./routes/userRoutes")
 ); // only accessible if logged in
+app.use(
+  "/api/list",
+  authenticateToken,
+  isAuthenticated,
+  require("./routes/listRoutes")
+); // only accessible if logged in
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
