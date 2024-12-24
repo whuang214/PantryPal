@@ -2,6 +2,7 @@ require("dotenv").config(); // Load environment variables
 const express = require("express"); // Express web server framework
 const morgan = require("morgan"); // Logging middleware
 const connectDB = require("./config/db");
+const { isAuthenticated, authenticateToken } = require("./config/auth");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -13,10 +14,14 @@ connectDB();
 app.use(morgan("dev")); // add logging middleware
 app.use(express.json()); // allows for json requests
 
-app.use(require("./config/auth")); // add req.user if token is valid
-
 /* Routes */
 app.use("api/auth", require("./routes/authRoutes"));
+app.use(
+  "api/users",
+  authenticateToken,
+  isAuthenticated,
+  require("./routes/userRoutes")
+); // only accsesible if logged in
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
