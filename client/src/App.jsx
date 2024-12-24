@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "./contexts/AuthProvider.jsx";
+import AuthenticatedApp from "./AuthenticatedApp.jsx";
 
 function App() {
-  const { user, logout, loginWithGoogle, loginWithGitHub, isLoading } =
-    useAuth();
+  const { user, loginWithGoogle, loginWithGitHub, isLoading } = useAuth();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -34,10 +34,7 @@ function App() {
   return (
     <div>
       {user ? (
-        <div>
-          <h1>Welcome, {user.name}!</h1>
-          <button onClick={logout}>Logout</button>
-        </div>
+        <AuthenticatedApp />
       ) : (
         <div>
           <button onClick={loginWithGoogle}>Login with Google</button>
