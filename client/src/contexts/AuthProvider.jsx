@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
     try {
       // based off the current token, get the user data
       const res = await axios.get(`${API_URL}/user`);
-      setUser(res.data.user);
+      setUser(res.data);
       setLoading(false);
     } catch (err) {
       setError(err.response.data.error);

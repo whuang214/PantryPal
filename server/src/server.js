@@ -21,7 +21,7 @@ app.use(passport.initialize()); // Initialize Passport
 /* Routes */
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use(
-  "/api/users",
+  "/api/user",
   authenticateToken,
   isAuthenticated,
   require("./routes/userRoutes")

@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 const JWT_SECRET = process.env.JWT_SECRET;
 
 function authenticateToken(req, res, next) {
@@ -10,13 +11,23 @@ function authenticateToken(req, res, next) {
     token = token.replace("Bearer ", "");
 
     // Check if token is valid and not expired
-    jwt.verify(token, JWT_SECRET, function (err, decoded) {
+    jwt.verify(token, JWT_SECRET, async function (err, decoded) {
       if (err) {
         next(err); // Pass the error to error-handling middleware
       } else {
-        // It's a valid token, so add user to req
-        req.user = decoded.user;
-        next();
+        // It's a valid token, find the user and attach it to the request object
+        try {
+          const user = await User.findById(decoded.id).select("-password");
+          if (!user) {
+            return res.status(404).json({ message: "User not found" });
+          }
+          req.user = user;
+          console.log(req.user);
+          next();
+        } catch (err) {
+          console.log("Error fetching user: ", err);
+          next(err); // Pass the error to error-handling middleware
+        }
       }
     });
   } else {

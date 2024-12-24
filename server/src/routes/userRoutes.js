@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const userController = require("../controllers/userController");
 
-// GET /api/users
+// GET /api/user
 router.get("/", (req, res) => {
-  res.json({ message: "User route" });
+  userController.getUser(req, res);
 });
 
 module.exports = router;
