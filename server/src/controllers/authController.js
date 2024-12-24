@@ -85,4 +85,36 @@ const googleAuthCallback = async (req, res) => {
   })(req, res);
 };
 
-module.exports = { signup, login, googleAuth, googleAuthCallback };
+// Github Auth controllers
+const githubAuth = async (req, res) => {
+  // this will redirect the user to Github's OAuth 2.0 server
+  console.log("githubAuth");
+  passport.authenticate("github")(req, res);
+};
+
+const githubAuthCallback = async (req, res) => {
+  // this will authenticate the user with Github after the user has granted permission
+  console.log("githubAuthCallback");
+
+  passport.authenticate("github", { session: false }, (err, user) => {
+    if (err || !user) {
+      // in case of an error or no user
+      console.log(err);
+      return res.status(401).json({ message: "Authentication failed" });
+    }
+
+    // Generate a JWT for the user
+    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "24h" });
+
+    res.status(200).json({ token });
+  })(req, res);
+};
+
+module.exports = {
+  signup,
+  login,
+  googleAuth,
+  googleAuthCallback,
+  githubAuth,
+  githubAuthCallback,
+};

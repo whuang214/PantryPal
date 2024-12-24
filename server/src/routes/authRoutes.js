@@ -9,4 +9,7 @@ const authCtrl = require("../controllers/authController");
 router.get("/google", authCtrl.googleAuth);
 router.get("/google/callback", authCtrl.googleAuthCallback);
 
+router.get("/github", authCtrl.githubAuth);
+router.get("/github/callback", authCtrl.githubAuthCallback);
+
 module.exports = router;
