@@ -5,6 +5,14 @@ const SALT_ROUNDS = 6;
 // User Schema
 const UserSchema = new mongoose.Schema(
   {
+    googleId: {
+      type: String,
+      unique: true,
+    },
+    githubId: {
+      type: String,
+      unique: true,
+    },
     name: {
       type: String,
       required: true,

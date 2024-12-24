@@ -6,4 +6,8 @@ const usersCtrl = require("../controllers/authController");
 router.post("/signup", usersCtrl.signup); // signup
 router.post("/login", usersCtrl.login); // login
 
+// Google OAuth
+router.get("/google", usersCtrl.googleAuth);
+router.get("/google/callback", usersCtrl.googleAuthCallback);
+
 module.exports = router;
