@@ -49,18 +49,12 @@ passport.use(
         // Check if user already exists
         let user = await User.findOne({ githubId: profile.id });
 
-        // Extract email from _json or set to null if not available
-        const email =
-          profile.emails && profile.emails.length > 0
-            ? profile.emails[0].value
-            : profile._json.email || null;
-
         if (!user) {
           // Create a new user if not found
           user = await User.create({
             githubId: profile.id,
-            name: profile.displayName,
-            email: email,
+            name: profile.displayName || profile.username,
+            email: profile._json.email || null,
             photo: profile.photos[0].value,
           });
         }
