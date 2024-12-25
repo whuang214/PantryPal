@@ -14,3 +14,6 @@ const ListSchema = new mongoose.Schema(
   },
   { timestamps: true } // createdAt, updatedAt
 );
+
+const List = mongoose.model("List", ListSchema);
+module.exports = List;

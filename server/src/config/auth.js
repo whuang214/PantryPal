@@ -22,7 +22,7 @@ function authenticateToken(req, res, next) {
             return res.status(404).json({ message: "User not found" });
           }
           req.user = user;
-          console.log(req.user);
+          console.log("req.user in auth.js: ", req.user);
           next();
         } catch (err) {
           console.log("Error fetching user: ", err);

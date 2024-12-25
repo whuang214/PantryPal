@@ -7,6 +7,7 @@ const getList = async (req, res) => {
     const lists = await List.find({ owner: req.user._id });
     res.json(lists);
   } catch (error) {
+    console.log(error);
     res.status(400).json({ error: error.message });
   }
 };
