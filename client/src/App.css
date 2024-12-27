@@ -1,0 +1,15 @@
+/* Color Palette */
+:root {
+  --primary-color: #4caf50; /* Primary (Green) */
+  --secondary-color: #ffc107; /* Secondary (Yellow) */
+  --background-color: #f5f5f5; /* Background (Light Gray) */
+  --text-primary-color: #ffffff; /* White for text */
+  --text-secondary-color: #757575; /* Light Gray */
+  --error-color: #f44336; /* Error (Red) */
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  /* border: 1px solid red */
+}

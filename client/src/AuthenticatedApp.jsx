@@ -12,6 +12,7 @@ const AuthenticatedApp = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/lists" element={<Lists />} />
+        <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </Router>
   );

@@ -1,0 +1,22 @@
+/* Navbar Styles */
+.navbar {
+  background-color: var(--primary-color);
+}
+
+.navbar-brand {
+  color: var(--text-primary-color) !important;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.nav-link {
+  color: var(--text-primary-color) !important;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #e0e0e0;
+  text-decoration: underline;
+}

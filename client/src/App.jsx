@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "./contexts/AuthProvider.jsx";
 import AuthenticatedApp from "./AuthenticatedApp.jsx";
+import "./App.css";
 
 function App() {
   const { user, loginWithGoogle, loginWithGitHub, isLoading } = useAuth();
